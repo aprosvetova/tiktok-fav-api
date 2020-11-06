@@ -1,9 +1,10 @@
-FROM python:3-slim
+FROM python:3.9-alpine
 
-ADD main.py /
+RUN apk -U add chromium udev ttf-freefont build-base
+RUN pip install TikTokApi aiohttp
 
-RUN pip install flask TikTokApi
+ADD main.py .
 
-EXPOSE 80
+EXPOSE 8080
 
-ENTRYPOINT [ "python", "./main.py" ]
+CMD [ "python", "./main.py" ]
