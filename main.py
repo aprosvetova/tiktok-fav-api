@@ -15,9 +15,10 @@ async def get_liked(request):
     username = request.match_info.get('username')
     try:
         likes = api.userLikedbyUsername(username)
-        return web.json_response([v['id'] for v in likes])
+        return web.json_response({'likes': [v['id'] for v in likes]})
     except Exception as e:
         return web.json_response({'error': repr(e)}), 500
+
 
 app = web.Application()
 app.add_routes([web.get('/user/{username}', get_liked)])
