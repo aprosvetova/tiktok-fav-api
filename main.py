@@ -14,4 +14,4 @@ def get_liked(username):
         return jsonify({'error': repr(e)}), 500
 
 
-app.run(port=80)
+app.run(host='0.0.0.0', port=80)
